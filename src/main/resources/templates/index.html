@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurants</title>
+</head>
+<body>
+<h1>Restaurants</h1>
+
+<br><br>
+
+<table>
+    <thead>
+        <tr bgcolor="#d3d3d3">
+            <td>Name</td>
+            <td>Address</td>
+            <td>Delivery Fee</td>
+            <td>Cuisine</td>
+        </tr>
+    </thead>
+        <tr th:each="restaurant : ${restaurants}">
+            <td th:text="${restaurant.getName()}"></td>
+            <td th:text="${restaurant.getAddress()}"></td>
+            <td th:text="${restaurant.getDeliveryFee()}"></td>
+            <td th:text="${restaurant.getCuisine().getName()}"></td>
+        </tr>
+    <tbody>
+
+    </tbody>
+</table>
+
+</body>
+</html>
