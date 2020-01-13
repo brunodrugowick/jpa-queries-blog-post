@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant</title>
+</head>
+<body>
+<h1 th:text="${restaurant.getName()}">Restaurant 1</h1>
+
+<table>
+    <thead>
+    <tr bgcolor="#d3d3d3">
+        <td colspan="2"><b>Restaurant Info</b></td>
+    </tr>
+    </thead>
+    <tr>
+        <td>Name</td>
+        <td th:text="${restaurant.getName()}"></td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td th:text="${restaurant.getAddress()}"></td>
+    </tr>
+    <tr>
+        <td>Delivery Fee</td>
+        <td th:text="${restaurant.getDeliveryFee()}"></td>
+    </tr>
+    <tr>
+        <td>Cuisine</td>
+        <td th:text="${restaurant.getCuisine().getName()}"></td>
+    </tr>
+    <tr>
+        <td>Updated Date</td>
+        <td th:text="${restaurant.getUpdatedDate()}"></td>
+    </tr>
+    <tr>
+        <td>Created Date</td>
+        <td th:text="${restaurant.getCreatedDate()}"></td>
+    </tr>
+    <tbody>
+
+    </tbody>
+</table>
+
+</body>
+</html>

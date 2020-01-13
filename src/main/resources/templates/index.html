@@ -18,7 +18,7 @@
             <td>Cuisine</td>
         </tr>
     </thead>
-        <tr th:each="restaurant : ${restaurants}">
+        <tr th:each="restaurant : ${restaurants}" style="cursor: pointer" th:onclick="'window.location.href=\'/restaurants/' + ${restaurant.getId()} + '\''">
             <td th:text="${restaurant.getName()}"></td>
             <td th:text="${restaurant.getAddress()}"></td>
             <td th:text="${restaurant.getDeliveryFee()}"></td>
