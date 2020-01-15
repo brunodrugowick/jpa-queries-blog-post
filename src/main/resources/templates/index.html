@@ -9,8 +9,10 @@
 
 <form th:action="@{/search}">
     Search by:
-    <select name="field">
-        <option value="name">Name</option>
+    <select id="field" name="field">
+        <option th:selected="${field == 'name'}" value="name">Name</option>
+        <option th:selected="${field == 'cuisine'}" value="cuisine">Cuisine</option>
+        <option th:selected="${field == 'delivery-fee'}" value="delivery-fee">Delivery Fee</option>
     </select>
     <input placeholder="Your search query" th:name="query" th:value="${query}" type="text"/>
     <input type="submit" value="Search">
@@ -25,14 +27,16 @@
         <td>Address</td>
         <td>Delivery Fee</td>
         <td>Cuisine</td>
-        </tr>
+    </tr>
     </thead>
-        <tr th:each="restaurant : ${restaurants}" style="cursor: pointer" th:onclick="'window.location.href=\'/restaurants/' + ${restaurant.getId()} + '\''">
-            <td th:text="${restaurant.getName()}"></td>
-            <td th:text="${restaurant.getAddress()}"></td>
-            <td th:text="${restaurant.getDeliveryFee()}"></td>
-            <td th:text="${restaurant.getCuisine().getName()}"></td>
-        </tr>
+    <tr th:each="restaurant : ${restaurants}">
+        <td style="cursor: pointer; background-color: aquamarine "
+            th:onclick="'window.location.href=\'/restaurants/' + ${restaurant.getId()} + '\''"
+            th:text="${restaurant.getName()}"></td>
+        <td th:text="${restaurant.getAddress()}"></td>
+        <td th:text="${restaurant.getDeliveryFee()}"></td>
+        <td th:text="${restaurant.getCuisine().getName()}"></td>
+    </tr>
     <tbody>
 
     </tbody>

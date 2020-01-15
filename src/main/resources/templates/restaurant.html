@@ -27,7 +27,9 @@
     </tr>
     <tr>
         <td>Cuisine</td>
-        <td th:text="${restaurant.getCuisine().getName()}"></td>
+        <td style="cursor: pointer; background-color: aquamarine "
+            th:onclick="'window.location.href=\'/cuisines/' + ${restaurant.getCuisine().getId()} + '\''"
+            th:text="${restaurant.getCuisine().getName()}"></td>
     </tr>
     <tr>
         <td>Updated Date</td>

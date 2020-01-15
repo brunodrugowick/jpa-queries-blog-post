@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
+
 @Controller
 public class IndexPage {
 
@@ -27,6 +29,17 @@ public class IndexPage {
                                  Model model) {
         if (field.equals("name")) {
             model.addAttribute("restaurants", restaurantRepository.findAllByNameContaining(query));
+        } else if (field.equals("cuisine")) {
+            model.addAttribute("restaurants", restaurantRepository.findAllByCuisineNameContaining(query));
+        } else if (field.equals("delivery-fee")) {
+            BigDecimal deliveryFee;
+            try {
+                deliveryFee = new BigDecimal(query);
+            } catch (NumberFormatException e) {
+                deliveryFee = new BigDecimal(100.00);
+                query = "100.00";
+            }
+            model.addAttribute("restaurants", restaurantRepository.findAllByDeliveryFeeIsLessThanEqual(deliveryFee));
         }
         model.addAttribute("field", field);
         model.addAttribute("query", query);
