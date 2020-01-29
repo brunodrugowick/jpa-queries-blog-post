@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
+
     <meta charset="UTF-8">
     <title>Cuisine</title>
 </head>
-<body>
-<h1 th:text="${cuisine.getName()}">Cuisine 1</h1>
+<body class="container">
 
-<table>
+<div th:replace="fragments/header :: header (title='Cuisine')"></div>
+
+<br>
+<h1 th:text="${cuisine.getName()}">Cuisine 1</h1>
+<br>
+<table class="table table-striped table-bordered">
     <thead>
-    <tr bgcolor="#d3d3d3">
+    <tr>
         <td colspan="2"><b>Cuisine Info</b></td>
     </tr>
     </thead>
@@ -31,5 +37,7 @@
     </tbody>
 </table>
 
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

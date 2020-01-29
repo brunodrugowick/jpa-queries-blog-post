@@ -1,38 +1,59 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
+
     <meta charset="UTF-8">
     <title>Restaurants</title>
 </head>
-<body>
-<h1>Restaurants</h1>
+<body class="container">
 
+<div th:replace="fragments/header :: header (title='Restaurants')"></div>
+
+<br>
 <form th:action="@{/search}">
-    Search by:
-    <select id="field" name="field">
-        <option th:selected="${field == 'name'}" value="name">Name</option>
-        <option th:selected="${field == 'cuisine'}" value="cuisine">Cuisine</option>
-        <option th:selected="${field == 'delivery-fee'}" value="delivery-fee">Delivery Fee</option>
-    </select>
-    <input placeholder="Your search query" th:name="query" th:value="${query}" type="text"/>
-    <input type="submit" value="Search">
+    <div class="card mb-auto">
+        <div class="card-header">
+            <h4>Filter Restaurants</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-group row">
+                <label for="field" class="col-sm-4 col-form-label">Search by</label>
+                <select class="form-control col-sm-8" id="field" name="field">
+                    <option th:selected="${field == 'name'}" value="name">Name</option>
+                    <option th:selected="${field == 'cuisine'}" value="cuisine">Cuisine</option>
+                    <option th:selected="${field == 'delivery-fee'}" value="delivery-fee">Delivery Fee</option>
+                </select>
+            </div>
+            <div class="form-group row">
+                <label for="query" class="col col-sm-4">Your search query</label>
+                <input id="query" class="form-control col-sm-8" placeholder="<empty>" th:name="query" th:value="${query}" type="text"/>
+            </div>
+            <div class="form-group row">
+                <div class="col col-sm-4"></div>
+                <input class="btn btn-primary col col-sm-8" type="submit" value="Submit">
+            </div>
+        </div>
+    </div>
 </form>
 
 <br><br>
 
-<table>
+<table class="table table-striped table-bordered">
     <thead>
-    <tr bgcolor="#d3d3d3">
-        <td>Name</td>
-        <td>Address</td>
-        <td>Delivery Fee</td>
-        <td>Cuisine</td>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Delivery Fee</th>
+        <th>Cuisine</th>
     </tr>
     </thead>
     <tr th:each="restaurant : ${restaurants}">
-        <td style="cursor: pointer; background-color: aquamarine "
-            th:onclick="'window.location.href=\'/restaurants/' + ${restaurant.getId()} + '\''"
-            th:text="${restaurant.getName()}"></td>
+        <td>
+            <button
+                    class="btn btn-primary"
+                    th:text="${restaurant.getName()}"
+                    th:onclick="'window.location.href=\'/restaurants/' + ${restaurant.getId()} + '\''"></button></td>
         <td th:text="${restaurant.getAddress()}"></td>
         <td th:text="${restaurant.getDeliveryFee()}"></td>
         <td th:text="${restaurant.getCuisine().getName()}"></td>
@@ -42,5 +63,7 @@
     </tbody>
 </table>
 
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

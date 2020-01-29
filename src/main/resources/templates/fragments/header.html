@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
+
+    <meta charset="UTF-8">
+    <title>Restaurants</title>
+</head>
+<body class="container">
+
+<nav th:fragment="header (title)" class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/" th:text="${title}"></a>
+</nav>
+
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
