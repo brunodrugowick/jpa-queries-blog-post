@@ -46,6 +46,9 @@
         <th>Address</th>
         <th>Delivery Fee</th>
         <th>Cuisine</th>
+        <th>City</th>
+        <th>Grab'n'Go</th>
+        <th>Active</th>
     </tr>
     </thead>
     <tr th:each="restaurant : ${restaurants}">
@@ -57,6 +60,9 @@
         <td th:text="${restaurant.getAddress()}"></td>
         <td th:text="${restaurant.getDeliveryFee()}"></td>
         <td th:text="${restaurant.getCuisine().getName()}"></td>
+        <td th:text="${restaurant.getCity()}"></td>
+        <td><input type="checkbox" th:checked="${restaurant.isGrabAndGo()}" disabled="true"></td>
+        <td><input type="checkbox" th:checked="${restaurant.isActive()}" disabled="true"></td>
     </tr>
     <tbody>
 

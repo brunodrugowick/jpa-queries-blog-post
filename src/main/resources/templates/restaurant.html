@@ -40,6 +40,20 @@
         </td>
     </tr>
     <tr>
+        <td>City</td>
+        <td th:text="${restaurant.getCity()}"></td>
+    </tr>
+    <tr>
+        <td>Grab'n'Go</td>
+        <td th:if="${restaurant.isGrabAndGo()}">Yes</td>
+        <td th:if="${!restaurant.isGrabAndGo()}">No</td>
+    </tr>
+    <tr>
+        <td>Active</td>
+        <td th:if="${restaurant.isActive()}">Yes</td>
+        <td th:if="${!restaurant.isActive()}">No</td>
+    </tr>
+    <tr>
         <td>Updated Date</td>
         <td th:text="${restaurant.getUpdatedDate()}"></td>
     </tr>

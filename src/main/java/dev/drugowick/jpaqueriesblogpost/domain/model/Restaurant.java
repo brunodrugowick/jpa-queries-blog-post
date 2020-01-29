@@ -30,6 +30,9 @@ public class Restaurant {
     private Cuisine cuisine;
 
     private String address;
+    private String city;
+    private boolean grabAndGo;
+    private boolean active;
 
     @CreationTimestamp
     @Column(nullable = false, columnDefinition = "datetime", updatable = false)
