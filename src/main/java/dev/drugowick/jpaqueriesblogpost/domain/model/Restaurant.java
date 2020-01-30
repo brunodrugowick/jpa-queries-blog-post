@@ -31,7 +31,7 @@ public class Restaurant {
 
     private String address;
     private String city;
-    private boolean grabAndGo;
+    private boolean grabngo;
     private boolean active;
 
     @CreationTimestamp

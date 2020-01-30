@@ -23,6 +23,7 @@
                     <option th:selected="${field == 'name'}" value="name">Name</option>
                     <option th:selected="${field == 'cuisine'}" value="cuisine">Cuisine</option>
                     <option th:selected="${field == 'delivery-fee'}" value="delivery-fee">Delivery Fee</option>
+                    <option th:selected="${field == 'local-grabngo'}" value="local-grabngo">Active and Grab'n'Go by City</option>
                 </select>
             </div>
             <div class="form-group row">
@@ -61,7 +62,7 @@
         <td th:text="${restaurant.getDeliveryFee()}"></td>
         <td th:text="${restaurant.getCuisine().getName()}"></td>
         <td th:text="${restaurant.getCity()}"></td>
-        <td><input type="checkbox" th:checked="${restaurant.isGrabAndGo()}" disabled="true"></td>
+        <td><input type="checkbox" th:checked="${restaurant.isGrabngo()}" disabled="true"></td>
         <td><input type="checkbox" th:checked="${restaurant.isActive()}" disabled="true"></td>
     </tr>
     <tbody>

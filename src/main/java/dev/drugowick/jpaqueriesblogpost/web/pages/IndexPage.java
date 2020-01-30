@@ -40,6 +40,8 @@ public class IndexPage {
                 query = "100.00";
             }
             model.addAttribute("restaurants", restaurantRepository.findAllByDeliveryFeeIsLessThanEqual(deliveryFee));
+        } else if (field.equals("local-grabngo")) {
+            model.addAttribute("restaurants", restaurantRepository.activeGrabngoByCity(query));
         }
         model.addAttribute("field", field);
         model.addAttribute("query", query);
