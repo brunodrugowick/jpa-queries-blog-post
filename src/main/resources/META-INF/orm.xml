@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+        version="2.2">
+
+    <named-query name="Restaurant.activeGrabngoByCity">
+        <query>from Restaurant r where r.active = true and r.grabngo = true and r.city like concat('%', :city, '%')</query>
+    </named-query>
+
+    <!-- You can have more...
+    <named-query name="Restaurant.otherMethodName">
+        <query>from Restaurant where whatever ... </query>
+    </named-query>
+    -->
+
+</entity-mappings>

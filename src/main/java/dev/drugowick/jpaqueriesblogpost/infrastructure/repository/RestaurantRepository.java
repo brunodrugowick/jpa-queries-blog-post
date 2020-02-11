@@ -19,6 +19,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
     Restaurant findTopByCuisineNameOrderByDeliveryFeeAsc(String cuisine);
 
-    @Query("from Restaurant r where r.active = true and r.grabngo = true and r.city like %:city%")
+    // Query defined on orm.xml file.
     List<Restaurant> activeGrabngoByCity(String city);
 }
