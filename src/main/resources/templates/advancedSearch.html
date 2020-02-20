@@ -71,10 +71,10 @@
             </div>
             -->
             <div class="form-group row">
-                <label class="col col-sm-4" for="logicalOperator">Logical Operator</label>
+                <label class="col col-sm-4" for="logicalOperator">Search mode</label>
                 <select class="form-control col-sm-8" id="logicalOperator" name="logicalOperator">
-                    <option th:selected="${search.getLogicalOperator() == 'AND'}" value="AND">AND</option>
-                    <option th:selected="${search.getLogicalOperator()} == 'OR'" value="OR">OR</option>
+                    <option th:selected="${search.getLogicalOperator() == 'AND'}" value="AND">Restaurants must contain all search parameters</option>
+                    <option th:selected="${search.getLogicalOperator()} == 'OR'" value="OR">Restaurants may contain one or more search parameters</option>
                 </select>
             </div>
             <div class="form-group row">
