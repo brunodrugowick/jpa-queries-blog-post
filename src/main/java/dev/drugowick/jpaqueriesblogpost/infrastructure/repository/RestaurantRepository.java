@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
+public interface RestaurantRepository extends JpaRepository<Restaurant, Long>, CustomRestaurantRepository {
 
     List<Restaurant> findAllByNameContaining(String query);
 

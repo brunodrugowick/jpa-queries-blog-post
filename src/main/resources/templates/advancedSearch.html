@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href='/webjars/bootstrap/css/bootstrap.min.css' rel='stylesheet'>
+
+    <meta charset="UTF-8">
+    <title>Restaurants</title>
+</head>
+<body class="container">
+
+<div th:replace="fragments/header :: header (title='Restaurants')"></div>
+
+<br>
+<form th:action="@{/advancedSearch/perform}">
+    <div class="card mb-auto">
+        <div class="card-header">
+            <h4>Filter Restaurants</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-group row small">
+                <div class="col col-sm-4 float-left"></div>
+                <div class="col col-sm-8 float-right">
+                    <a class="float-right" href="/">Simple search</a>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col col-sm-4" for="name">Name</label>
+                <input class="form-control col-sm-8" id="name" placeholder="<empty>" th:name="name"
+                       th:value="${search.name}" type="text"/>
+            </div>
+            <div class="form-group row">
+                <label class="col col-sm-4" for="address">Address</label>
+                <input class="form-control col-sm-8" id="address" placeholder="<empty>" th:name="address"
+                       th:value="${search.address}" type="text"/>
+            </div>
+            <div class="form-group row">
+                <label class="col col-sm-4" for="minDeliveryFee">Delivery Fee</label>
+                <label class="col col-sm-1" for="minDeliveryFee">Min</label>
+                <input class="form-control col-sm-3" id="minDeliveryFee" placeholder="<min>" th:name="minDeliveryFee"
+                       th:value="${search.minDeliveryFee}" type="text"/>
+                <label class="col col-sm-1" for="maxDeliveryFee">Max</label>
+                <input class="form-control col-sm-3" id="maxDeliveryFee" placeholder="<max>" th:name="maxDeliveryFee"
+                       th:value="${search.maxDeliveryFee}" type="text"/>
+            </div>
+            <div class="form-group row">
+                <label class="col col-sm-4" for="cuisine">Cuisine</label>
+                <input class="form-control col-sm-8" id="cuisine" placeholder="<empty>" th:name="cuisine"
+                       th:value="${search.cuisine}" type="text"/>
+            </div>
+            <div class="form-group row">
+                <label class="col col-sm-4" for="city">City</label>
+                <input class="form-control col-sm-8" id="city" placeholder="<empty>" th:name="city"
+                       th:value="${search.city}" type="text"/>
+            </div>
+            <!--
+            <div class="form-group row">
+                <label for="grabngo" class="col col-sm-4">Grab'n'Go</label>
+                <select class="form-control col-sm-8" id="grabngo" name="grabngo">
+                    <option th:selected="${search.getGrabngo() == ''}" value="name">&lt;Empty&gt;</option>
+                    <option th:selected="${search.getGrabngo() == 'Yes'}" value="cuisine">Yes</option>
+                    <option th:selected="${search.getGrabngo() == 'No'}" value="delivery-fee">No</option>
+                </select>
+            </div>
+            <div class="form-group row">
+                <label for="active" class="col col-sm-4">Active</label>
+                <select class="form-control col-sm-8" id="active" name="active">
+                    <option th:selected="${search.getActive() == ''}" value="name">&lt;Empty&gt;</option>
+                    <option th:selected="${search.getActive() == 'Yes'}" value="cuisine">Yes</option>
+                    <option th:selected="${search.getActive() == 'No'}" value="delivery-fee">No</option>
+                </select>
+            </div>
+            -->
+            <div class="form-group row">
+                <div class="col col-sm-4"></div>
+                <input class="btn btn-primary col col-sm-8" type="submit" value="Submit">
+            </div>
+        </div>
+    </div>
+</form>
+
+<br><br>
+
+<table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Delivery Fee</th>
+        <th>Cuisine</th>
+        <th>City</th>
+        <th>Grab'n'Go</th>
+        <th>Active</th>
+    </tr>
+    </thead>
+    <tr th:each="restaurant : ${restaurants}">
+        <td>
+            <button
+                    class="btn btn-primary"
+                    th:onclick="'window.location.href=\'/restaurants/' + ${restaurant.getId()} + '\''"
+                    th:text="${restaurant.getName()}"></button>
+        </td>
+        <td th:text="${restaurant.getAddress()}"></td>
+        <td th:text="${restaurant.getDeliveryFee()}"></td>
+        <td th:text="${restaurant.getCuisine().getName()}"></td>
+        <td th:text="${restaurant.getCity()}"></td>
+        <td><input disabled="true" th:checked="${restaurant.isGrabngo()}" type="checkbox"></td>
+        <td><input disabled="true" th:checked="${restaurant.isActive()}" type="checkbox"></td>
+    </tr>
+    <tbody>
+
+    </tbody>
+</table>
+
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

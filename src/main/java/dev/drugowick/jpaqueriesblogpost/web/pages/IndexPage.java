@@ -1,8 +1,10 @@
 package dev.drugowick.jpaqueriesblogpost.web.pages;
 
 import dev.drugowick.jpaqueriesblogpost.infrastructure.repository.RestaurantRepository;
+import dev.drugowick.jpaqueriesblogpost.web.pages.dto.AdvancedSearch;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -46,5 +48,21 @@ public class IndexPage {
         model.addAttribute("field", field);
         model.addAttribute("query", query);
         return "index";
+    }
+
+    @RequestMapping("/advancedSearch")
+    public String advancedSearch(Model model) {
+        model.addAttribute("restaurants", restaurantRepository.findAll());
+        model.addAttribute("search", new AdvancedSearch());
+        return "advancedSearch";
+    }
+
+    @RequestMapping("/advancedSearch/perform")
+    public String advancedSearchWithQuery(@ModelAttribute AdvancedSearch advancedSearch,
+                                          Model model) {
+        model.addAttribute("restaurants", restaurantRepository.advancedSearch(advancedSearch));
+
+        model.addAttribute("search", advancedSearch);
+        return "advancedSearch";
     }
 }
