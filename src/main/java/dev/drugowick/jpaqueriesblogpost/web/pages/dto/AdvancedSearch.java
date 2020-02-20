@@ -16,4 +16,6 @@ public class AdvancedSearch {
     private String city;
     private String grabngo;
     private String active;
+
+    private String logicalOperator = "AND";
 }

@@ -29,34 +29,35 @@ public class CustomRestaurantRepositoryImpl implements CustomRestaurantRepositor
         jpql.append("from Restaurant where 1=1 ");
 
         var parameters = new HashMap<String, Object>();
+        var logicalOperator = advancedSearch.getLogicalOperator().equals("AND") ? "AND" : "OR";
 
         if (StringUtils.hasLength(advancedSearch.getName())) {
-            jpql.append("and name like :name ");
+            jpql.append(logicalOperator + " name like :name ");
             parameters.put("name", "%" + advancedSearch.getName() + "%");
         }
 
         if (StringUtils.hasLength(advancedSearch.getAddress())) {
-            jpql.append("and address like :address ");
+            jpql.append(logicalOperator + " address like :address ");
             parameters.put("address", "%" + advancedSearch.getAddress() + "%");
         }
 
         if (advancedSearch.getMinDeliveryFee() != null) {
-            jpql.append("and deliveryFee >= :startFee ");
+            jpql.append(logicalOperator + " deliveryFee >= :startFee ");
             parameters.put("startFee", advancedSearch.getMinDeliveryFee());
         }
 
         if (advancedSearch.getMaxDeliveryFee() != null) {
-            jpql.append("and deliveryFee <= :endingFee ");
+            jpql.append(logicalOperator + " deliveryFee <= :endingFee ");
             parameters.put("endingFee", advancedSearch.getMaxDeliveryFee());
         }
 
         if (StringUtils.hasLength(advancedSearch.getCuisine())) {
-            jpql.append("and cuisine.name like :cuisine ");
+            jpql.append(logicalOperator + " cuisine.name like :cuisine ");
             parameters.put("cuisine", "%" + advancedSearch.getCuisine() + "%");
         }
 
         if (StringUtils.hasLength(advancedSearch.getCity())) {
-            jpql.append("and city like :city ");
+            jpql.append(logicalOperator + " city like :city ");
             parameters.put("city", "%" + advancedSearch.getCity() + "%");
         }
 
